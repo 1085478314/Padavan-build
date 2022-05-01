@@ -45,7 +45,6 @@ jobs:
     - name: Build Firmware
       env:
         TNAME: PSG1218
-        KERNEL: 3.4
       run: |
         cd /opt/rt-n56u/trunk
         sed -i '/CONFIG_FIRMWARE_INCLUDE_ARIA_WEB_CONTROL/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
@@ -119,10 +118,10 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_OPENVPN=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
         echo "CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
         echo "CONFIG_FIRMWARE_INCLUDE_ARIA=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
-        
-        sudo ./clear_tree
+
         cp -f configs/templates/$TNAME.config .config
-        sudo ./build_firmware_modify $TNAME
+        sudo ./clear_tre
+        sudo ./build_firmware_modify
         sudo mv -f images/*.trx /opt/images/
     - name : Upload packages
       uses: actions/upload-artifact@master

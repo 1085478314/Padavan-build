@@ -119,6 +119,7 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
         echo "CONFIG_FIRMWARE_INCLUDE_ARIA=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
 
+        cp -f configs/templates/$TNAME.config .config
         sudo ./clear_tree
         sudo ./build_firmware_modify MI-3
         sudo mv -f images/*.trx /opt/images/

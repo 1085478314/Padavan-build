@@ -120,7 +120,7 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_ARIA=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
 
         cp -f configs/templates/$TNAME.config .config
-        sudo ./clear_tre
+        sudo ./clear_tree
         sudo ./build_firmware_modify
         sudo mv -f images/*.trx /opt/images/
     - name : Upload packages

@@ -47,7 +47,7 @@ jobs:
         TNAME: RM2100
       run: |
         cd /opt/rt-n56u/trunk
-       #sed -i '/CONFIG_FIRMWARE_WIFI2_DRIVER/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        #sed -i '/CONFIG_FIRMWARE_WIFI2_DRIVER/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_ARIA_WEB_CONTROL/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_CURL/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_DOGCOM/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
@@ -84,7 +84,7 @@ jobs:
         sed -i '/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_ARIA/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
 
-       #echo "CONFIG_FIRMWARE_WIFI2_DRIVER=2.7" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        #echo "CONFIG_FIRMWARE_WIFI2_DRIVER=2.7" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
         echo "CONFIG_FIRMWARE_INCLUDE_ARIA_WEB_CONTROL=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
         echo "CONFIG_FIRMWARE_INCLUDE_CURL=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
         echo "CONFIG_FIRMWARE_INCLUDE_DOGCOM=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config

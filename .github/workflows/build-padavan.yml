@@ -44,7 +44,7 @@ jobs:
         mkdir -p /opt/images/
     - name: Build Firmware
       env:
-        TNAME: RM2100
+        TNAME: K2P
       run: |
         cd /opt/rt-n56u/trunk
         #sed -i '/CONFIG_FIRMWARE_WIFI2_DRIVER/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config

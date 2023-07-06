@@ -45,7 +45,7 @@ jobs:
         mkdir -p /opt/images/
     - name: Build Firmware
       env:
-        TNAME: K2P
+        TNAME: XY-C1
       run: |
         cd /opt/rt-n56u/trunk
         #sed -i '/CONFIG_FIRMWARE_WIFI2_DRIVER/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config

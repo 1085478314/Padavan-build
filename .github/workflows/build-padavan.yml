@@ -16,7 +16,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-18.04
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
@@ -27,10 +27,9 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo apt-get update
-        sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
-             fakeroot kmod cpio git python3-docutils gettext automake autopoint \
-             texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
-             libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin
+        sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd fakeroot \
+        cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
+        pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget
     - name: Clone source code
       env:
         KERNEL: 3.4
@@ -38,7 +37,7 @@ jobs:
         if [ $KERNEL = "4.4" ] ; then
         git clone --depth=1 https://github.com/hanwckf/padavan-4.4.git /opt/rt-n56u
         else
-        git clone --depth=1 https://github.com/fightroad/Padavan-KVR.git /opt/rt-n56u
+        git clone --depth=1 https://github.com/hanwckf/rt-n56u.git /opt/rt-n56u
         fi
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
@@ -48,9 +47,81 @@ jobs:
         TNAME: K2P
       run: |
         cd /opt/rt-n56u/trunk
+        #sed -i '/CONFIG_FIRMWARE_WIFI2_DRIVER/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_ARIA_WEB_CONTROL/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_CURL/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_DOGCOM/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_MINIEAP/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_NJIT_CLIENT/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_NAPT66/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_VLMCSD/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_TTYD/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_LRZSZ/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_HTOP/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_NANO/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_IPERF3/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_MTR/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SOCAT/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SRELAY/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_ENABLE_USB/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_ENABLE_UFSD/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_ENABLE_FAT/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_ENABLE_EXFAT/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_ENABLE_EXT2/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_ENABLE_EXT3/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_ENABLE_EXT4/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_ENABLE_FUSE/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_UVC/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SERIAL/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_AUDIO/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_LPRD/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_U2EC/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_HDPARM/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_PARTED/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SMBD/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_FTPD/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_OPENVPN/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_ARIA/d' /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        #echo "CONFIG_FIRMWARE_WIFI2_DRIVER=2.7" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_ARIA_WEB_CONTROL=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_CURL=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_DOGCOM=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_MINIEAP=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_NJIT_CLIENT=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_NAPT66=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_VLMCSD=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_TTYD=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_LRZSZ=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_HTOP=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_NANO=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_IPERF3=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_MTR=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_SOCAT=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_SRELAY=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_ENABLE_USB=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_ENABLE_UFSD=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_ENABLE_FAT=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_ENABLE_EXFAT=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_ENABLE_EXT2=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_ENABLE_EXT3=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_ENABLE_EXT4=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_ENABLE_FUSE=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_UVC=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_SERIAL=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_AUDIO=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_LPRD=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_U2EC=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_HDPARM=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_PARTED=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_SMBD=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_FTPD=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_OPENVPN=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_ARIA=n" >> /opt/rt-n56u/trunk/configs/templates/$TNAME.config
         cp -f configs/templates/$TNAME.config .config
         sudo ./clear_tree
-        sudo ./build_firmware_modify $TNAME
+        sudo ./build_firmware_modify RM2100
         sudo mv -f images/*.trx /opt/images/
     - name : Upload packages
       uses: actions/upload-artifact@master

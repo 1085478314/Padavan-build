@@ -48,9 +48,8 @@ jobs:
         TNAME: RM2100
       run: |
         cd /opt/rt-n56u/trunk
-        sudo ./clear_tree
-        sudo fakeroot ./build_firmware_modify $TNAME
-        sudo mv -f images/*.trx /opt/images/
+        fakeroot ./build_firmware_modify $TNAME
+        mv -f images/*.trx /opt/images/
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()

@@ -45,7 +45,7 @@ jobs:
         mkdir -p /opt/images/
     - name: Build Firmware
       env:
-        TNAME: RM2100
+        TNAME: K2P
       run: |
         cd /opt/rt-n56u/trunk
         sed -i 's/CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=y/CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=n/g' /opt/rt-n56u/trunk/build_firmware_modify

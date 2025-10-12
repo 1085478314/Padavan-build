@@ -45,7 +45,7 @@ jobs:
         mkdir -p /opt/images/
     - name: Build Firmware
       env:
-        TNAME: RM2100
+        TNAME: XY-C1
       run: |
         cd /opt/rt-n56u/trunk
         fakeroot ./build_firmware_modify $TNAME

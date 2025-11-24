@@ -45,7 +45,7 @@ jobs:
         mkdir -p /opt/images/
     - name: Build Firmware
       env:
-        TNAME: XY-C1
+        TNAME: K2P
       run: |
         cd /opt/rt-n56u/trunk
         fakeroot ./build_firmware_modify $TNAME
